@@ -3,6 +3,9 @@ from tkinter import Canvas, Button, PhotoImage, Entry, Text, Button, PhotoImage
 from pathlib import Path
 import sys
 from logic.translator import Translator
+from logic.audio import MorseAudio
+from tkinter import ttk
+from tkinter.ttk import Progressbar
 
 # Function to get the base path for assets (for cross-platform compatibility)
 def get_base_path():
@@ -17,6 +20,7 @@ def relative_to_assets(path: str) -> Path:
 
 #translator object
 translator = Translator()
+audio = MorseAudio()
 
 # Main Application Class
 class MainApp(tk.Tk):
@@ -83,19 +87,24 @@ class TranslatePage(tk.Frame):
         canvas = Canvas(self, bg="#1F1F1F", height=768, width=1024, bd=0, highlightthickness=0, relief="ridge")
         canvas.pack(fill="both", expand=True)
 
+        #text area input
         text_area_image = PhotoImage(file=relative_to_assets("text_area.png"))
         canvas.create_image(512.0, 242.5, image=text_area_image)
         self.text_area_image = text_area_image  # Keep reference
 
-        text_area = tk.Text(self, bd=0, bg="#191919", fg="#000716", highlightthickness=0)
-        text_area.place(x=90.0, y=162.0, width=844.0, height=159.0)
+        self.text_area = tk.Text(self, bd=0, bg="#191919", fg="#F58B57", font=("Nato Sans Arabic", 16), highlightthickness=0)
+        self.text_area.place(x=90.0, y=162.0, width=844.0, height=159.0)
 
-        #output and line
+        #output rect and line
         canvas.create_rectangle(90.0, 354.0, 934.0, 648.0, fill="#191919", outline="")
         canvas.create_rectangle(89.0, 646.9998177080748, 934.0, 648.0, fill="#F58B57", outline="")
 
-        #combobox
-        canvas.create_rectangle(684.0, 51.0, 934.0, 101.0, fill="#191919", outline="")
+        #output lable
+        self.output_label = tk.Label(self, bg="#191919", fg="#F58B57", font=("Nato Sans Arabic", 16), anchor="nw", justify="left",wraplength=844)
+        self.output_label.place(x=90.0, y=354.0, width=844.0, height=159.0)
+
+        # Bind text input event
+        self.text_area.bind("<KeyRelease>", self.translate_text)
 
         #home button
         home_button_image = PhotoImage(file=relative_to_assets("home_button.png"))
@@ -103,12 +112,40 @@ class TranslatePage(tk.Frame):
         button_home.place(x=90.0, y=56.0, width=40.0, height=40.0)
         self.home_button_image = home_button_image
 
+        #playbutton
         play_button_image = PhotoImage(file=relative_to_assets("play_button.png"))
-        button_play = Button(self, image=play_button_image, borderwidth=0, highlightthickness=0, command=lambda: print("PLAY clicked"), relief="flat")
+        button_play = Button(self, image=play_button_image, borderwidth=0, highlightthickness=0, command=lambda: self.generate_audio(), relief="flat")
         button_play.place(x=492.0, y=673.0, width=40.0, height=40.0)
         self.play_button_image = play_button_image
 
-        canvas.create_rectangle( 89.0, 738.9999262151706, 934.0, 740.0, fill="#FFFFFF", outline="")
+        #progressbar
+        #canvas.create_rectangle( 89.0, 738.9999262151706, 934.0, 740.0, fill="#FFFFFF", outline="")
+        # Create a progress bar
+        self.progress_bar = Progressbar(self, orient="horizontal", length=845, mode="determinate")
+        self.progress_bar.place(x=89, y=738.9999262151706, )
+
+        # Create a variable to store translation mode
+        self.translation_mode = tk.StringVar(value="English to Morse")
+
+        # Create combo box for mode selection
+        canvas.create_rectangle(684.0, 51.0, 934.0, 101.0, fill="#191919", outline="")
+        self.combo_box = ttk.Combobox(self, textvariable=self.translation_mode, state="readonly", font=("Nato Sans Arabic", 12))
+        self.combo_box["values"] = ("English to Morse", "Morse to English")
+        self.combo_box.place(x=684, y=51, width=250, height=50)
+
+    def translate_text(self, event=None):
+        """Translate the text to Morse code in real time."""
+        text = self.text_area.get("1.0", tk.END).strip()  # Get user input
+        mode = self.combo_box.get()
+        morse_code = translator.to_morse(text) if mode == "English to Morse" else translator.to_english(text) # Translate using your Translator class
+        self.output_label.config(text=morse_code)  # Display Morse code
+
+    def generate_audio(self):
+        mode = self.combo_box.get()
+        message = self.text_area.get("1.0", tk.END).strip() if mode == "Morse to English" else self.output_label.cget("text")
+        audio.play_morse(message)
+
+
 
 # Run the application
 if __name__ == "__main__":
