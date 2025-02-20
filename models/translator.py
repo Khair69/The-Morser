@@ -12,10 +12,3 @@ class Translator:
     
     def to_english(self, message: str) -> str:
         return " ".join("".join(self.reverse_dict.get(code, "?") for code in word.split()) for word in message.split(" / "))
-    
-if __name__ == "__main__":
-    #translator = Translator()
-    #print(translator.to_morse("test test"))
-    #print(translator.to_english("- . ... - / - . ... -"))
-    pass
-

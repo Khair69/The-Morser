@@ -40,7 +40,3 @@ class MorseAudio:
             play(audio)
         except Exception as e:
             print(f"Warning: Could not play audio. Error: {e}")
-
-if __name__ == "__main__":
-    player = MorseAudio()
-    player.play_morse(".... . .-.. .-.. --- / .-- --- .-. .-.. -..")  # HELLO WORLD

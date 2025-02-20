@@ -37,4 +37,4 @@ htmlcov/
 Thumbs.db
 
 # Application-specific files
-logic/temp_audio/
+models/temp_audio/
