@@ -2,6 +2,7 @@ import os
 from pydub import AudioSegment
 from pydub.generators import Sine
 from pydub.playback import play
+from multiprocessing import Process
 
 # Define a temp folder inside the project directory
 TEMP_DIR = os.path.join(os.path.dirname(__file__), "temp_audio")
@@ -35,8 +36,13 @@ class MorseAudio:
         audio_file_path = os.path.join(TEMP_DIR, "morse_output.wav")
         audio.export(audio_file_path, format="wav")
 
+        self.proc = Process(target=play, args=(audio,))
+
         # Try playing the file, but ignore errors
         try:
-            play(audio)
+            self.proc.start()
         except Exception as e:
             print(f"Warning: Could not play audio. Error: {e}")
+
+    def stop(self):
+        self.proc.terminate()

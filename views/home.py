@@ -1,5 +1,5 @@
 from tkinter import Canvas, PhotoImage, Button, Frame
-import controllers.pref as pref
+import models.pref as pref
 
 ASSETS_PATH = pref.get_base_path()
 

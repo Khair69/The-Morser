@@ -3,10 +3,16 @@ from typing import TypedDict
 from .root import Root
 from .home import HomeView
 from .translate import TranslateView
+from .learn.learn import LearnMenuView
+from .learn.language import LearnLangMenuView
+from .learn.translate import LearnTranslateView
 
 class Frames(TypedDict):
     home: HomeView
     translate: TranslateView
+    learn: LearnMenuView
+    learnLang : LearnLangMenuView
+    learnTranslate : LearnTranslateView
 
 class View:
     def __init__(self):
@@ -15,6 +21,9 @@ class View:
 
         self._add_frame(HomeView, "home")
         self._add_frame(TranslateView, "translate")
+        self._add_frame(LearnMenuView, "learn")
+        self._add_frame(LearnLangMenuView, "learnLang")
+        self._add_frame(LearnTranslateView, "learnTranslate")
 
     def _add_frame(self, Frame, name: str) -> None:
         self.frames[name] = Frame(self.root)

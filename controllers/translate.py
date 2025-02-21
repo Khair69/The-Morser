@@ -1,6 +1,7 @@
 from tkinter import END
 from models.main import Model
 from views.main import View
+import pyperclip as pc
 
 class TranslateController:
     def __init__(self, model:Model, view:View):
@@ -14,6 +15,8 @@ class TranslateController:
         # Bind text input event
         self.frame.text_area.bind("<KeyRelease>", self.translate_text)
         self.frame.button_play.config(command=self.generate_audio)
+        self.frame.button_stop.config(command=self.stop)
+        self.frame.output_label.bind("<Button-1>", self.copy)
 
     def home(self) -> None:
         self.view.switch("home") 
@@ -29,3 +32,17 @@ class TranslateController:
         mode = self.frame.combo_box.get()
         message = self.frame.text_area.get("1.0", END).strip() if mode == "Morse to English" else self.frame.output_label.cget("text")
         self.model.audio_gen.play_morse(message)
+        self.frame.button_play.place_forget()
+        self.frame.button_stop.place(x=492.0, y=673.0, width=40.0, height=40.0)
+
+    def stop(self):
+        self.model.audio_gen.stop()
+        self.frame.button_stop.place_forget()
+        self.frame.button_play.place(x=492.0, y=673.0, width=40.0, height=40.0)
+
+    def copy(self, event=None):
+        mode = self.frame.combo_box.get()
+        if mode == "English to Morse":
+            pc.copy(self.frame.output_label.cget("text"))
+        else:
+            pc.copy(self.frame.text_area.get("1.0", END).strip())
