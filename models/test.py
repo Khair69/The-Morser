@@ -1,7 +1,10 @@
 from models.learn import Learn
 
-l = Learn("m2e")
-while l.get_word() == True:
-    print(l.morse_word)
-    inp = input("guess")
-    print(l.check(inp))
+l = Learn()
+l.start("e2m")
+
+word = l.get_word()
+while word != False:
+    inp = input(word)
+    print(l.check(word,inp))
+    word = l.get_word()
