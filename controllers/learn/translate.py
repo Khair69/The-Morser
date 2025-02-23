@@ -7,7 +7,9 @@ class LearnTranslateController:
         self.model = model
         self.view = view
         self.frame = self.view.frames["learnTranslate"]
+        self.mode = ""
         self._bind()
+
         
 
     def _bind(self) -> None:
@@ -16,16 +18,18 @@ class LearnTranslateController:
         self.frame.button_start.config(command=self.start_game)
         self.frame.button_enter.config(command=self.check)
         self.frame.button_next.config(command=self.next)
+        self.frame.button_e2m.config(command=self.e2m)
+        self.frame.button_m2e.config(command=self.m2e)
 
     def home(self) -> None:
         self.view.switch("home") 
 
     def back(self) -> None:
-        self.view.switch("learnLang") 
+        self.view.switch("learn") 
 
     def start_game(self) -> None:
         self.frame.button_start.place_forget()
-        self.model.learn.start("e2m")
+        self.model.learn.start(self.mode)
         self.word = self.model.learn.get_word()
         self.frame.word_label.config(text=self.word)
         self.frame.word_label.place(x=512.0, y=177.0,anchor=CENTER)
@@ -35,6 +39,8 @@ class LearnTranslateController:
         self.frame.text_area.place(x=90.0, y=321.0, width=844.0, height=292.0)
         #line
         self.frame.canvas.create_rectangle(89.0, 613.9998177080747, 934.0, 615.0, fill="#F58B57", outline="")
+
+        self.score = 0
 
     def check(self) -> None:
         guess = self.frame.text_area.get("1.0", END).strip()  # Get user input
@@ -60,5 +66,17 @@ class LearnTranslateController:
         self.frame.button_next.place_forget()
         self.frame.button_enter.place(x=387.0, y=663.0, width=250.0, height=50.0)
         self.frame.text_area.delete("1.0", END)
+
+    def e2m(self) -> None:
+        self.mode = "e2m"
+        self.frame.button_e2m.place_forget()
+        self.frame.button_m2e.place_forget()
+        self.frame.button_start.place(x=387.0, y=300.0, width=250.0, height=50.0)
+
+    def m2e(self) -> None:
+        self.mode = "m2e"
+        self.frame.button_e2m.place_forget()
+        self.frame.button_m2e.place_forget()
+        self.frame.button_start.place(x=387.0, y=300.0, width=250.0, height=50.0)
 
 

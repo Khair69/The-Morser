@@ -16,4 +16,4 @@ class LearnController:
         self.view.switch("home") 
 
     def translate(self) -> None:
-        self.view.switch("learnLang") 
+        self.view.switch("learnTranslate")
