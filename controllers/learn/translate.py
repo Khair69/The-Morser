@@ -3,10 +3,11 @@ from views.main import View
 from tkinter import CENTER, END
 
 class LearnTranslateController:
-    def __init__(self, model:Model, view: View) -> None:
+    def __init__(self, model:Model, view: View, obj) -> None:
         self.model = model
         self.view = view
-        self.frame = self.view.frames["learnTranslate"]
+        self.frame = self.view.current_frame
+        self.obj = obj
         self.mode = ""
         self._bind()
 
@@ -21,9 +22,11 @@ class LearnTranslateController:
 
     def home(self) -> None:
         self.view.switch("home") 
+        self.obj.switch("home")
 
     def back(self) -> None:
         self.view.switch("learn") 
+        self.obj.switch("learn")
 
     def start_game(self) -> None:
         self.frame.button_start.place_forget()

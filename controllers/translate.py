@@ -4,10 +4,12 @@ from views.main import View
 import pyperclip as pc
 
 class TranslateController:
-    def __init__(self, model:Model, view:View):
+    def __init__(self, model:Model, view:View, obj):
+        print("it worked")
         self.model = model
         self.view = view
-        self.frame = self.view.frames["translate"]
+        self.frame = self.view.current_frame
+        self.obj = obj
         self._bind()
 
     def _bind(self) -> None:
@@ -20,6 +22,7 @@ class TranslateController:
 
     def home(self) -> None:
         self.view.switch("home") 
+        self.obj.switch("home")
 
     def translate_text(self, event=None):
         #Translate the text to Morse code in real time.
