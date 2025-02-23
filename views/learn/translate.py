@@ -13,7 +13,6 @@ class LearnTranslateView(Frame):
         #text area input
         self.text_area_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"text_area2.png"))
 
-
         self.text_area = Text(self, bd=0, bg="#191919", fg="#F58B57", font=("Nato Sans Arabic", 16), highlightthickness=0)
 
         #home button
@@ -36,12 +35,10 @@ class LearnTranslateView(Frame):
         self.button_e2m = Button(self, image=self.e2m_button_image, borderwidth=0, highlightthickness=0, relief="flat")
         self.button_e2m.place(x=387.0, y=269.0, width=250.0, height=50.0)
 
-
         #m2e
         self.m2e_button_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"m2e_button.png"))
         self.button_m2e = Button(self, image=self.m2e_button_image, borderwidth=0, highlightthickness=0, relief="flat")
         self.button_m2e.place(x=387.0, y=449.0, width=250.0, height=50.0)
-
 
         #enter button
         self.enter_button_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"enter_button.png"))

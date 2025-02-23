@@ -12,9 +12,8 @@ class TranslateView(Frame):
         self.canvas.pack(fill="both", expand=True)
 
         #text area input
-        text_area_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"text_area.png"))
-        self.canvas.create_image(512.0, 242.5, image=text_area_image)
-        self.text_area_image = text_area_image  # Keep reference
+        self.text_area_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"text_area.png"))
+        self.canvas.create_image(512.0, 242.5, image=self.text_area_image)
 
         self.text_area = Text(self, bd=0, bg="#191919", fg="#F58B57", font=("Nato Sans Arabic", 16), highlightthickness=0)
         self.text_area.place(x=90.0, y=162.0, width=844.0, height=159.0)
@@ -28,16 +27,14 @@ class TranslateView(Frame):
         self.output_label.place(x=90.0, y=354.0, width=844.0, height=159.0)
 
         #home button
-        home_button_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"home_button.png"))
-        self.button_home = Button(self, image=home_button_image, borderwidth=0, highlightthickness=0, relief="flat")
+        self.home_button_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"home_button.png"))
+        self.button_home = Button(self, image=self.home_button_image, borderwidth=0, highlightthickness=0, relief="flat")
         self.button_home.place(x=90.0, y=56.0, width=40.0, height=40.0)
-        self.home_button_image = home_button_image
 
         #playbutton
-        play_button_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"play_button.png"))
-        self.button_play = Button(self, image=play_button_image, borderwidth=0, highlightthickness=0, relief="flat")
+        self.play_button_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"play_button.png"))
+        self.button_play = Button(self, image=self.play_button_image, borderwidth=0, highlightthickness=0, relief="flat")
         self.button_play.place(x=492.0, y=673.0, width=40.0, height=40.0)
-        self.play_button_image = play_button_image
 
         """
         #progressbar
@@ -54,6 +51,5 @@ class TranslateView(Frame):
         self.combo_box["values"] = ("English to Morse", "Morse to English")
         self.combo_box.place(x=684, y=51, width=250, height=50)
 
-        stop_button_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"pause_button.png"))
-        self.button_stop = Button(self, image=stop_button_image, borderwidth=0, highlightthickness=0, relief="flat")
-        self.stop_button_image = stop_button_image
+        self.stop_button_image = PhotoImage(file=pref.relative_to_assets(ASSETS_PATH,"pause_button.png"))
+        self.button_stop = Button(self, image=self.stop_button_image, borderwidth=0, highlightthickness=0, relief="flat")

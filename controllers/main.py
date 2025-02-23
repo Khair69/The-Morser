@@ -5,6 +5,7 @@ from .home import HomeController
 from .translate import TranslateController
 from .learn.learn import LearnController
 from .learn.translate import LearnTranslateController
+from .learn.letters import LearnLettersController
 
 class Controller:
     def __init__(self,model: Model,view: View) -> None:
@@ -14,6 +15,7 @@ class Controller:
         self.translate_controller = TranslateController(model,view)
         self.learn_controller = LearnController(model,view)
         self.learnTranslate_controller = LearnTranslateController(model,view)
+        self.learnLetters_controller = LearnLettersController(model,view)
 
     def start(self) -> None:
         self.view.switch("home")

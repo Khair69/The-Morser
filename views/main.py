@@ -5,12 +5,14 @@ from .home import HomeView
 from .translate import TranslateView
 from .learn.learn import LearnMenuView
 from .learn.translate import LearnTranslateView
+from .learn.letters import LearnLettersView
 
 class Frames(TypedDict):
     home: HomeView
     translate: TranslateView
     learn: LearnMenuView
     learnTranslate : LearnTranslateView
+    learnLetters : LearnLettersView
 
 class View:
     def __init__(self):
@@ -21,6 +23,7 @@ class View:
         self._add_frame(TranslateView, "translate")
         self._add_frame(LearnMenuView, "learn")
         self._add_frame(LearnTranslateView, "learnTranslate")
+        self._add_frame(LearnLettersView, "learnLetters")
 
     def _add_frame(self, Frame, name: str) -> None:
         self.frames[name] = Frame(self.root)

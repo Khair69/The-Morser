@@ -10,8 +10,6 @@ class LearnTranslateController:
         self.mode = ""
         self._bind()
 
-        
-
     def _bind(self) -> None:
         self.frame.button_home.config(command=self.home)
         self.frame.button_back.config(command=self.back)
