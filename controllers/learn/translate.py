@@ -42,12 +42,14 @@ class LearnTranslateController:
         self.frame.canvas.create_rectangle(89.0, 613.9998177080747, 934.0, 615.0, fill="#F58B57", outline="")
 
         self.score = 0
+        self.total = len(self.model.learn.e2m)
 
     def check(self) -> None:
         guess = self.frame.text_area.get("1.0", END).strip()  # Get user input
         res = self.model.learn.check(self.word,guess)
         if res == True:
             self.frame.res_label.config(fg="green", text="Correct!")
+            self.score +=1
         else:
             self.frame.res_label.config(fg="red", text=f"Wrong, it's {res}")
 
@@ -58,7 +60,7 @@ class LearnTranslateController:
     def next(self) -> None:
         self.word = self.model.learn.get_word()
         if self.word == False:
-            self.frame.word_label.config(text="THE GAME IS DONE")
+            self.frame.word_label.config(text=f"THE GAME IS DONE\nYou got {self.score} out of {self.total}")
             self.frame.button_enter.place(x=387.0, y=663.0, width=250.0, height=50.0)
             return
 

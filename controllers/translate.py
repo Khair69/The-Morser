@@ -5,7 +5,6 @@ import pyperclip as pc
 
 class TranslateController:
     def __init__(self, model:Model, view:View, obj):
-        print("it worked")
         self.model = model
         self.view = view
         self.frame = self.view.current_frame

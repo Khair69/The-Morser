@@ -24,7 +24,7 @@ class Controller:
     def switch(self, name):
         new_controller = self.controller_classes[name](self.model,self.view,self)
         if self.current_controller is not None:
-            self.current_controller.destroy()
+            del self.current_controller
         self.current_controller = new_controller
 
     def start(self) -> None:
