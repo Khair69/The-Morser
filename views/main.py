@@ -4,6 +4,7 @@ from .translate import TranslateView
 from .learn.learn import LearnMenuView
 from .learn.translate import LearnTranslateView
 from .learn.letters import LearnLettersView
+from .learn.listen import LearnListenView
 class View:
     def __init__(self):
         self.root = Root()
@@ -13,7 +14,8 @@ class View:
             "translate": TranslateView,
             "learn": LearnMenuView,
             "learnTranslate": LearnTranslateView,
-            "learnLetters": LearnLettersView
+            "learnLetters": LearnLettersView,
+            "learnListen": LearnListenView
         }
         self.current_frame = None
 

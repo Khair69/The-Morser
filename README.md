@@ -25,16 +25,26 @@ This project was inspired by a Vsauce video. You can watch the video here:
    cd The-Morser
    ```
 
-  2. **Install Dependencies**:
-     ```bash
-     pip install -r requirements.txt
-     ```
-     Ensure the [FFmpeg](https://ffmpeg.org/download.html) is installed on your system and added to your system's PATH, as it's required for audio playback
+2. **Install Dependencies**:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+   Ensure the [FFmpeg](https://ffmpeg.org/download.html) is installed on your system and added to your system's PATH, as it's required for audio playback
+
+3. **Run**:
+
+   ```bash
+   python -m main
+   ```
 
 ## Usage
 
 ## Contributing
+
 Contributions are welcome! Please fork the repository and submit a pull request with your enhancements.
 
 ## License
+
 This project is licensed under the MIT Licence

@@ -28,12 +28,8 @@ class HomeView(Frame):
 
         #go to translate page button
         self.button_translate = CTk.CTkButton(self, width=250, height=50, text="Translate", font=("Segoe UI Variable Display Bold", 29), text_color="#191919", corner_radius=self.corner_rad, bg_color="#1F1F1F", fg_color="#bb6b44", hover_color="#874d31")
-        self.button_translate.place(x=647.0, y=180.0)
-
-        #go to audio page button
-        self.button_audio = CTk.CTkButton(self, width=250, height=50, text="Audio", font=("Segoe UI Variable Display Bold", 29), text_color="#191919", corner_radius=self.corner_rad, bg_color="#1F1F1F", fg_color="#bb6b44", hover_color="#874d31")
-        self.button_audio.place(x=647.0, y=540.0)
-
+        self.button_translate.place(x=647.0, y=270.0)
+    
         #go to learn page button
         self.button_learn = CTk.CTkButton(self, width=250, height=50, text="Learn", font=("Segoe UI Variable Display Bold", 29), text_color="#191919", corner_radius=self.corner_rad, bg_color="#1F1F1F", fg_color="#bb6b44", hover_color="#874d31")
-        self.button_learn.place(x=647.0, y=360.0)
+        self.button_learn.place(x=647.0, y=450.0)

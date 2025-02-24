@@ -6,6 +6,7 @@ from .translate import TranslateController
 from .learn.learn import LearnController
 from .learn.translate import LearnTranslateController
 from .learn.letters import LearnLettersController
+from .learn.listen import LearnListenController
 
 class Controller:
     def __init__(self,model: Model,view: View) -> None:
@@ -17,7 +18,8 @@ class Controller:
             "translate": TranslateController,
             "learn": LearnController,
             "learnTranslate": LearnTranslateController,
-            "learnLetters": LearnLettersController
+            "learnLetters": LearnLettersController,
+            "learnListen": LearnListenController
         }
         self.current_controller = None
 

@@ -2,13 +2,13 @@ from models.main import Model
 from views.main import View
 from tkinter import CENTER, messagebox
 
-class LearnTranslateController:
+class LearnListenController:
     def __init__(self, model:Model, view: View, obj) -> None:
         self.model = model
         self.view = view
         self.frame = self.view.current_frame
         self.obj = obj
-        self.mode = ""
+        self.mode = "m2e"
         self._bind()
 
     def _bind(self) -> None:
@@ -17,8 +17,8 @@ class LearnTranslateController:
         self.frame.button_start.configure(command=self.start_game)
         self.frame.button_enter.configure(command=self.check)
         self.frame.button_next.configure(command=self.next)
-        self.frame.button_e2m.configure(command=self.e2m)
-        self.frame.button_m2e.configure(command=self.m2e)
+        self.frame.button_play.configure(command=self.generate_audio)
+        self.frame.button_stop.configure(command=self.stop)
 
     def home(self) -> None:
         self.view.switch("home") 
@@ -30,29 +30,25 @@ class LearnTranslateController:
             self.view.switch("learn") 
             self.obj.switch("learn")
 
-    def choose(self) -> None:
-        self.frame.button_e2m.place_forget()
-        self.frame.button_m2e.place_forget()
-        self.frame.button_start.place(x=387.0, y=300.0)
-
-    def e2m(self) -> None:
-        self.mode = "e2m"
-        self.choose()
-
-    def m2e(self) -> None:
-        self.mode = "m2e"
-        self.choose()
-
     def start_game(self) -> None:
         self.frame.button_start.place_forget()
         self.model.learn.start(self.mode)
         self.word = self.model.learn.get_word()
-        self.frame.word_label.configure(text=self.word)
-        self.frame.word_label.place(x=512.0, y=177.0,anchor=CENTER)
         self.frame.button_enter.place(x=387.0, y=663.0)
         self.frame.text_area.place(x=90.0, y=321.0)
         self.frame.prog_bar.configure(determinate_speed=0.5/(self.model.learn.total/100))
         self.frame.prog_bar.place(x=90, y=20)
+        self.frame.button_play.place(x=492.0, y=177.0)
+
+    def generate_audio(self):
+        self.model.audio_gen.play_morse(self.word)
+        self.frame.button_play.place_forget()
+        self.frame.button_stop.place(x=492.0, y=177.0)
+
+    def stop(self):
+        self.model.audio_gen.stop()
+        self.frame.button_stop.place_forget()
+        self.frame.button_play.place(x=492.0, y=177.0)
 
     def check(self) -> None:
         guess = self.frame.text_area.get(0.0, "end").strip()  # Get user input
@@ -63,20 +59,21 @@ class LearnTranslateController:
         else:
             self.frame.res_label.configure(text_color="red", text=f"Wrong, it's {res}")
 
-        self.frame.res_label.place(x=512.0, y=300.0,anchor=CENTER)
+        self.frame.res_label.place(x=512.0, y=295.0,anchor=CENTER)
         self.frame.button_enter.place_forget()
         self.frame.button_next.place(x=387.0, y=663.0)
     
     def next(self) -> None:
+        self.stop()
         self.word = self.model.learn.get_word()
         self.frame.prog_bar.step()
         if self.word == False:
-            self.frame.word_label.configure(text=f"THE GAME IS DONE\nYou got {self.model.learn.score} out of {self.model.learn.total}")
+            self.frame.res_label.configure(text_color="#bb6b44", text=f"THE GAME IS DONE\nYou got {self.model.learn.score} out of {self.model.learn.total}")
             self.frame.button_next.place_forget()
             self.frame.prog_bar.set(1)
             return
 
-        self.frame.word_label.configure(text=self.word)
+        self.frame.button_play.place(x=492.0, y=177.0)
         self.frame.res_label.place_forget()
         self.frame.button_next.place_forget()
         self.frame.button_enter.place(x=387.0, y=663.0)
