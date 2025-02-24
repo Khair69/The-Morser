@@ -55,3 +55,7 @@ class LearnTranslateView(Frame):
 
         #resault
         self.res_label = CTk.CTkLabel(self, bg_color="#1f1f1f", text_color="#bb6b44", font=("Segoe UI Variable Display Bold", 18), text="")
+
+        #progbar
+        self.prog_bar = CTk.CTkProgressBar(self, orientation="horizontal",bg_color="#1f1f1f", progress_color="#bb6b44", fg_color="#191919", width=844)
+        self.prog_bar.set(0)

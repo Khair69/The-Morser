@@ -1,6 +1,6 @@
 from models.main import Model
 from views.main import View
-from tkinter import CENTER
+from tkinter import CENTER, messagebox
 
 class LearnTranslateController:
     def __init__(self, model:Model, view: View, obj) -> None:
@@ -25,8 +25,10 @@ class LearnTranslateController:
         self.obj.switch("home")
 
     def back(self) -> None:
-        self.view.switch("learn") 
-        self.obj.switch("learn")
+        e = messagebox.askokcancel(title="Exit?", message="Are you sure you want to exit?\nYou will lose all progress.")
+        if e:
+            self.view.switch("learn") 
+            self.obj.switch("learn")
 
     def choose(self) -> None:
         self.frame.button_e2m.place_forget()
@@ -49,16 +51,15 @@ class LearnTranslateController:
         self.frame.word_label.place(x=512.0, y=177.0,anchor=CENTER)
         self.frame.button_enter.place(x=387.0, y=663.0)
         self.frame.text_area.place(x=90.0, y=321.0)
-        
-        self.score = 0
-        self.total = len(self.model.learn.e2m)
+        self.frame.prog_bar.configure(determinate_speed=0.5/(6/100))
+        self.frame.prog_bar.place(x=90, y=20)
 
     def check(self) -> None:
         guess = self.frame.text_area.get(0.0, "end").strip()  # Get user input
         res = self.model.learn.check(self.word,guess)
         if res == True:
             self.frame.res_label.configure(text_color="green", text="Correct!")
-            self.score +=1
+            self.model.learn.score +=1
         else:
             self.frame.res_label.configure(text_color="red", text=f"Wrong, it's {res}")
 
@@ -68,9 +69,11 @@ class LearnTranslateController:
     
     def next(self) -> None:
         self.word = self.model.learn.get_word()
+        self.frame.prog_bar.step()
         if self.word == False:
-            self.frame.word_label.configure(text=f"THE GAME IS DONE\nYou got {self.score} out of {self.total}")
-            self.frame.button_enter.place(x=387.0, y=663.0)
+            self.frame.word_label.configure(text=f"THE GAME IS DONE\nYou got {self.model.learn.score} out of {self.model.learn.total}")
+            self.frame.button_next.place_forget()
+            self.frame.prog_bar.set(1)
             return
 
         self.frame.word_label.configure(text=self.word)

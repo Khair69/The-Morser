@@ -37,14 +37,7 @@ class TranslateView(Frame):
         self.stop_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"pause_button.png")), size=(40,40))
         self.button_stop = CTk.CTkButton(self, image=self.stop_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
 
-        """
-        #progressbar
-        #canvas.create_rectangle( 89.0, 738.9999262151706, 934.0, 740.0, fill="#FFFFFF", outline="")
-        # Create a progress bar
-        self.progress_bar = Progressbar(self, orient="horizontal", length=845, mode="determinate")
-        self.progress_bar.place(x=89, y=738.9999262151706, )
-        """
-
+        #mode variable
         self.translation_mode = StringVar(value="English to Morse")
         modes = ["English to Morse", "Morse to English"]
         # Create combo box for mode selection

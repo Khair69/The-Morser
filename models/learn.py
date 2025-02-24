@@ -10,6 +10,8 @@ class Learn:
     def start(self, mode):
         self.mode = mode if mode=="e2m" or "m2e" else None
         self.asked = set()
+        self.total = len(self.e2m)
+        self.score = 0
 
     def get_word(self):
         remaining = list(set(self.e2m.items()) - self.asked)
@@ -28,11 +30,11 @@ class Learn:
             if guess.strip().lower() == self.e2m[word].strip().lower():
                 return True
             else:
-                return self.e2m[word].strip().lower()
+                return self.e2m[word].strip()
             
         elif self.mode == "m2e":
             if guess.strip().lower() == self.m2e[word].strip().lower():
                 return True
             else:
-                return self.m2e[word].strip().lower()
+                return self.m2e[word].strip()
 
