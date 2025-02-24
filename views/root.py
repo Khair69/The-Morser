@@ -1,10 +1,11 @@
-from tkinter import Tk
-
-class Root(Tk):
+import customtkinter as CTk
+class Root(CTk.CTk):
     def __init__(self):
         super().__init__()
 
+        CTk.set_appearance_mode("dark")
+        #CTk.set_default_color_theme("red")
+
         self.title("The Morser")
         self.geometry("1024x768")
-        self.configure(bg="#1F1F1F")
         self.resizable(False, False)

@@ -10,8 +10,8 @@ class LearnLettersController:
         self._bind()
 
     def _bind(self) -> None:
-        self.frame.button_home.config(command=self.home)
-        self.frame.button_back.config(command=self.back)
+        self.frame.button_home.configure(command=self.home)
+        self.frame.button_back.configure(command=self.back)
     
     def home(self) -> None:
         self.view.switch("home")
