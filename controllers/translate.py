@@ -17,6 +17,7 @@ class TranslateController:
         self.frame.button_play.configure(command=self.generate_audio)
         self.frame.button_stop.configure(command=self.stop)
         self.frame.output_label.bind("<Button-1>", self.copy)
+        self.frame.button_settings.configure(command=self.settings)
 
     def home(self) -> None:
         self.view.switch("home") 
@@ -47,3 +48,7 @@ class TranslateController:
             pc.copy(self.frame.output_label.cget("text"))
         else:
             pc.copy(self.frame.text_area.get(0.0, "end").strip())
+
+    def settings(self) -> None:
+        self.view.settings()
+        self.obj.settings()

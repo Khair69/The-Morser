@@ -19,10 +19,13 @@ class LearnTranslateController:
         self.frame.button_next.configure(command=self.next)
         self.frame.button_e2m.configure(command=self.e2m)
         self.frame.button_m2e.configure(command=self.m2e)
+        self.frame.button_settings.configure(command=self.settings)
 
     def home(self) -> None:
-        self.view.switch("home") 
-        self.obj.switch("home")
+        e = messagebox.askokcancel(title="Exit?", message="Are you sure you want to exit?\nYou will lose all progress.")
+        if e:
+            self.view.switch("home") 
+            self.obj.switch("home")
 
     def back(self) -> None:
         e = messagebox.askokcancel(title="Exit?", message="Are you sure you want to exit?\nYou will lose all progress.")
@@ -81,3 +84,7 @@ class LearnTranslateController:
         self.frame.button_next.place_forget()
         self.frame.button_enter.place(x=387.0, y=663.0)
         self.frame.text_area.delete(0.0, "end")
+
+    def settings(self) -> None:
+        self.view.settings()
+        self.obj.settings()

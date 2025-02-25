@@ -7,6 +7,7 @@ from .learn.learn import LearnController
 from .learn.translate import LearnTranslateController
 from .learn.letters import LearnLettersController
 from .learn.listen import LearnListenController
+from .settings import SettingsController
 
 class Controller:
     def __init__(self,model: Model,view: View) -> None:
@@ -19,9 +20,11 @@ class Controller:
             "learn": LearnController,
             "learnTranslate": LearnTranslateController,
             "learnLetters": LearnLettersController,
-            "learnListen": LearnListenController
+            "learnListen": LearnListenController,
+            "settings": SettingsController
         }
         self.current_controller = None
+        self.settings_controller = None
 
     def switch(self, name):
         new_controller = self.controller_classes[name](self.model,self.view,self)
@@ -33,3 +36,7 @@ class Controller:
         self.view.switch("home")
         self.switch("home")
         self.view.start_mainloop()
+
+    def settings(self) -> None:
+        if self.settings_controller is None:
+            self.settings_controller = self.controller_classes["settings"](self.model,self.view, self)

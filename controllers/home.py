@@ -12,6 +12,7 @@ class HomeController:
     def _bind(self) -> None:
         self.frame.button_translate.configure(command=self.translate)
         self.frame.button_learn.configure(command=self.learn)
+        self.frame.button_settings.configure(command=self.settings)
 
     def translate(self) -> None:
         self.view.switch("translate")
@@ -20,3 +21,7 @@ class HomeController:
     def learn(self) -> None:
         self.view.switch("learn")
         self.obj.switch("learn")
+
+    def settings(self) -> None:
+        self.view.settings()
+        self.obj.settings()

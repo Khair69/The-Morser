@@ -14,6 +14,7 @@ class LearnController:
         self.frame.button_translate.configure(command=self.translate)
         self.frame.button_letters.configure(command=self.letters)
         self.frame.button_listen.configure(command=self.listen)
+        self.frame.button_settings.configure(command=self.settings)
 
     def home(self) -> None:
         self.view.switch("home") 
@@ -30,3 +31,7 @@ class LearnController:
     def listen(self) -> None:
         self.view.switch("learnListen")
         self.obj.switch("learnListen")
+
+    def settings(self) -> None:
+        self.view.settings()
+        self.obj.settings()

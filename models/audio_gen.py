@@ -11,7 +11,8 @@ os.makedirs(TEMP_DIR, exist_ok=True)  # Ensure the folder exists
 class MorseAudio:
     DOT_DURATION = 200  # milliseconds
     DASH_DURATION = DOT_DURATION * 3
-    FREQUENCY = 800  # Hz
+    FREQUENCY = 600  # Hz
+    VOLUME = 0
 
     def generate_tone(self, duration):
         return Sine(self.FREQUENCY).to_audio_segment(duration=duration)
@@ -36,7 +37,7 @@ class MorseAudio:
         audio_file_path = os.path.join(TEMP_DIR, "morse_output.wav")
         audio.export(audio_file_path, format="wav")
 
-        self.proc = Process(target=play, args=(audio,))
+        self.proc = Process(target=play, args=(audio+self.VOLUME,))
 
         # Try playing the file, but ignore errors
         try:

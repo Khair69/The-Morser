@@ -45,6 +45,11 @@ class TranslateView(Frame):
         self.combo_box["values"] = ("English to Morse", "Morse to English")
         self.combo_box.place(x=684, y=51)
 
+        #settings button
+        self.settings_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"settings_button.png")), size=(40,40))
+        self.button_settings = CTk.CTkButton(self, image=self.settings_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
+        self.button_settings.place(x=965.0, y=709.0)
+        
     #func to create rounded rect
     def round_rectangle(self, x1, y1, x2, y2, r=25, **kwargs):    
         points = (x1+r, y1, x1+r, y1, x2-r, y1, x2-r, y1, x2, y1, x2, y1+r, x2, y1+r, x2, y2-r, x2, y2-r, x2, y2, x2-r, y2, x2-r, y2, x1+r, y2, x1+r, y2, x1, y2, x1, y2-r, x1, y2-r, x1, y1+r, x1, y1+r, x1, y1)

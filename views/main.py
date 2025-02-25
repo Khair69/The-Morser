@@ -5,6 +5,7 @@ from .learn.learn import LearnMenuView
 from .learn.translate import LearnTranslateView
 from .learn.letters import LearnLettersView
 from .learn.listen import LearnListenView
+from .settings import SettingsView
 class View:
     def __init__(self):
         self.root = Root()
@@ -15,9 +16,11 @@ class View:
             "learn": LearnMenuView,
             "learnTranslate": LearnTranslateView,
             "learnLetters": LearnLettersView,
-            "learnListen": LearnListenView
+            "learnListen": LearnListenView,
+            "settings": SettingsView
         }
         self.current_frame = None
+        self.settings_frame = None
 
     def switch(self, name):
         new_frame = self.frame_classes[name](self.root)
@@ -28,3 +31,9 @@ class View:
 
     def start_mainloop(self) -> None:
         self.root.mainloop()
+
+    def settings(self) -> None:
+        if self.settings_frame is None or not self.settings_frame.winfo_exists():
+            self.settings_frame = self.frame_classes["settings"](self.root)
+        else:
+            self.settings_frame.focus()
