@@ -8,6 +8,7 @@ from .learn.translate import LearnTranslateController
 from .learn.letters import LearnLettersController
 from .learn.listen import LearnListenController
 from .settings import SettingsController
+from .learn.custom import LearnCustomController
 
 class Controller:
     def __init__(self,model: Model,view: View) -> None:
@@ -21,7 +22,8 @@ class Controller:
             "learnTranslate": LearnTranslateController,
             "learnLetters": LearnLettersController,
             "learnListen": LearnListenController,
-            "settings": SettingsController
+            "settings": SettingsController,
+            "custom": LearnCustomController
         }
         self.current_controller = None
         self.settings_controller = None

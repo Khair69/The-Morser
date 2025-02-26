@@ -26,7 +26,7 @@ class TranslateView(Frame):
         #home button
         self.home_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"home_button.png")), size=(40,40))
         self.button_home = CTk.CTkButton(self, image=self.home_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
-        self.button_home.place(x=90.0, y=56.0)
+        self.button_home.place(x=19.0, y=19.0)
 
         #playbutton
         self.play_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"play_button.png")), size=(40,40))
@@ -40,10 +40,10 @@ class TranslateView(Frame):
         #mode variable
         self.translation_mode = StringVar(value="English to Morse")
         modes = ["English to Morse", "Morse to English"]
-        # Create combo box for mode selection
-        self.combo_box = CTk.CTkComboBox(self, values=modes , font=("Segoe UI Variable Display Bold", 18), dropdown_font=("Segoe UI Variable Display Bold", 18), width=250, height=50, corner_radius=25, bg_color="#1f1f1f", border_color="#bb6b44", button_color="#bb6b44", button_hover_color="#874d31", text_color="#808080")
-        self.combo_box["values"] = ("English to Morse", "Morse to English")
-        self.combo_box.place(x=684, y=51)
+        #mode selection
+        self.mode_sel = CTk.CTkSegmentedButton(self, values=modes, font=("Segoe UI Variable Display Bold", 18), selected_color="#bb6b44", fg_color="#191919", bg_color="#1f1f1f", width=320, selected_hover_color="#874d31")
+        self.mode_sel.set("English to Morse")
+        self.mode_sel.place(x=352, y=95)
 
         #settings button
         self.settings_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"settings_button.png")), size=(40,40))

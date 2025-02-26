@@ -6,6 +6,7 @@ from .learn.translate import LearnTranslateView
 from .learn.letters import LearnLettersView
 from .learn.listen import LearnListenView
 from .settings import SettingsView
+from .learn.custom import LearnCustomView
 class View:
     def __init__(self):
         self.root = Root()
@@ -17,7 +18,8 @@ class View:
             "learnTranslate": LearnTranslateView,
             "learnLetters": LearnLettersView,
             "learnListen": LearnListenView,
-            "settings": SettingsView
+            "settings": SettingsView,
+            "custom": LearnCustomView
         }
         self.current_frame = None
         self.settings_frame = None

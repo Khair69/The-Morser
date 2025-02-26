@@ -2,13 +2,14 @@ import json
 import random
 
 class Learn:
-    def __init__(self, data_file="data/set_words.json"):
-        with open(data_file, "r") as file:
+    def __init__(self):
+        pass
+
+    def start(self, mode, file_name):
+        self.mode = mode if mode=="e2m" or "m2e" else None
+        with open(f"data/custom_sets/{file_name}.json", "r") as file:
             self.e2m = json.load(file)
         self.m2e = {v: k for k, v in self.e2m.items()}
-
-    def start(self, mode):
-        self.mode = mode if mode=="e2m" or "m2e" else None
         self.asked = set()
         self.total = len(self.e2m)
         self.score = 0

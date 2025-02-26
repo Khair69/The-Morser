@@ -18,15 +18,10 @@ class LearnTranslateView(Frame):
         #text area input
         self.text_area = CTk.CTkTextbox(self, font=("Segoe UI Variable Display", 16),  width=844.0, height=292.0,  bg_color="#1f1f1f", text_color="#bb6b44",corner_radius=10, fg_color="#191919")
 
-        #home button
-        self.home_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"home_button.png")), size=(40,40))
-        self.button_home = CTk.CTkButton(self, image=self.home_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
-        self.button_home.place(x=90.0, y=56.0)
-
         #back button
         self.back_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"back_button.png")), size=(40,40))
         self.button_back = CTk.CTkButton(self, image=self.back_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
-        self.button_back.place(x=143.0, y=56.0)
+        self.button_back.place(x=19.0, y=19.0)
 
         #settings button
         self.settings_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"settings_button.png")), size=(40,40))
@@ -51,7 +46,7 @@ class LearnTranslateView(Frame):
         self.button_next = CTk.CTkButton(self, width=250, height=50, text="Next", font=("Segoe UI Variable Display Bold", 29), text_color="#191919", corner_radius=self.corner_rad, bg_color="#1F1F1F", fg_color="#bb6b44", hover_color="#874d31")
 
         #output
-        self.word_label = CTk.CTkLabel(self, bg_color="#1f1f1f", text_color="#bb6b44", font=("Segoe UI Variable Display Semibold", 32) ,text="")
+        self.word_label = CTk.CTkLabel(self, bg_color="#1f1f1f", text_color="#bb6b44", font=("Segoe UI Variable Display Semibold", 32) ,text="", wraplength=1000)
 
         #resault
         self.res_label = CTk.CTkLabel(self, bg_color="#1f1f1f", text_color="#bb6b44", font=("Segoe UI Variable Display Bold", 18), text="")
@@ -59,3 +54,11 @@ class LearnTranslateView(Frame):
         #progbar
         self.prog_bar = CTk.CTkProgressBar(self, orientation="horizontal",bg_color="#1f1f1f", progress_color="#bb6b44", fg_color="#191919", width=844)
         self.prog_bar.set(0)
+
+        #new button
+        self.button_custom = CTk.CTkButton(self, width=155, height=50, text="New", font=("Segoe UI Variable Display Bold", 29), text_color="#191919", corner_radius=self.corner_rad, bg_color="#1F1F1F", fg_color="#bb6b44", hover_color="#874d31")
+
+        #scrollabe frame
+        self.choose_frame = CTk.CTkScrollableFrame(self, width=400, height=400, corner_radius=15, fg_color="#191919", bg_color="#1f1f1f", label_text="Choose a set of words", label_font=("Segoe UI Variable Display Bold", 18), label_anchor="w")
+
+
