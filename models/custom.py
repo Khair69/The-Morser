@@ -13,6 +13,6 @@ class Custom:
     def read(self) -> None:
         filenames = [os.path.splitext(file)[0]
                     for file in os.listdir(self.path)
-                    if os.path.isfile(os.path.join(self.path, file))
+                    if os.path.isfile(os.path.join(self.path, file)) and os.path.splitext(file)[0] != ".gitkeep"
         ]
         return filenames
