@@ -41,4 +41,4 @@ models/temp_audio/*
 !models/temp_audio/.gitkeep
 
 data/custom_sets/*
-!data/custom_sets.gitkeep
+!data/custom_sets/.gitkeep
