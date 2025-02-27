@@ -1,15 +1,13 @@
-from pathlib import Path
+import os
 import sys
 
-def get_base_path():
-    if hasattr(sys, "_MEIPASS"):
-        return Path(sys._MEIPASS) / "../data/assets"
-    return Path(__file__).parent / "../data/assets"
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and PyInstaller """
+    base_path = ""
+    if hasattr(sys, '_MEIPASS'):
+        base_path = sys._MEIPASS
+    else:
+        # Go up one folder from models to the project root
+        base_path = os.path.dirname(os.path.dirname(__file__))
 
-def relative_to_assets(ASSETS_PATH,path: str) -> Path:
-    return ASSETS_PATH / Path(path)
-
-def get_base_path_json():
-    if hasattr(sys, "_MEIPASS"):
-        return Path(sys._MEIPASS) / "../data/custom_sets"
-    return Path(__file__).parent / "../data/custom_sets"
+    return os.path.join(base_path, relative_path)

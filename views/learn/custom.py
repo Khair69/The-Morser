@@ -3,7 +3,7 @@ import customtkinter as CTk
 import models.pref as pref
 from PIL import Image
 
-ASSETS_PATH = pref.get_base_path()
+ASSETS_PATH = pref.resource_path("data/assets/")
 
 class LearnCustomView(Frame):
     def __init__(self, master):
@@ -16,12 +16,12 @@ class LearnCustomView(Frame):
         self.canvas.pack(fill="both", expand=True)
 
         #back button
-        self.back_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"back_button.png")), size=(40,40))
+        self.back_button_image = CTk.CTkImage(Image.open(ASSETS_PATH+"back_button.png"), size=(40,40))
         self.button_back = CTk.CTkButton(self, image=self.back_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
         self.button_back.place(x=19.0, y=19.0)
 
         #settings button
-        self.settings_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"settings_button.png")), size=(40,40))
+        self.settings_button_image = CTk.CTkImage(Image.open(ASSETS_PATH+"settings_button.png"), size=(40,40))
         self.button_settings = CTk.CTkButton(self, image=self.settings_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
         self.button_settings.place(x=965.0, y=709.0)
 

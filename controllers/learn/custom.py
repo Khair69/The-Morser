@@ -23,14 +23,17 @@ class LearnCustomController:
     def back(self) -> None:
         e = messagebox.askokcancel(title="Exit?", message="Are you sure you want to exit?\nYou have unsaved changes.")
         if e:
-            self.view.switch("learnTranslate") 
-            self.obj.switch("learnTranslate")
+            self.view.switch("learn") 
+            self.obj.switch("learn")
     
     def add(self, *args) -> None:
         eng_w = self.frame.inp_word.get().strip().upper()
-        morse_w = self.model.translator.to_morse(eng_w)
-        self.words.update({eng_w:morse_w})
-        self.frame.inp_word.delete(0,"end")
+        if eng_w:
+            morse_w = self.model.translator.to_morse(eng_w)
+            self.words.update({eng_w:morse_w})
+            self.frame.inp_word.delete(0,"end")
+        else:
+            messagebox.showwarning(title="Empty", message="Please provide a word")
     
     def save(self) -> None:
         if self.words:

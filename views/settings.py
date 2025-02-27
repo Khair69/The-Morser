@@ -1,8 +1,6 @@
 import models.pref as pref
 import customtkinter as CTk
 
-ASSETS_PATH = pref.get_base_path()
-
 class SettingsView(CTk.CTkToplevel):
     def __init__(self, master):
         super().__init__(master)
@@ -12,7 +10,7 @@ class SettingsView(CTk.CTkToplevel):
         self.geometry("400x300")
         self.title("Settings")
         self.resizable(False, False)
-        self.after(250, lambda: self.iconbitmap(pref.relative_to_assets(pref.get_base_path(),"icon.ico")))
+        self.after(250, lambda: self.iconbitmap(pref.resource_path("data/assets/icon.ico")))
         self.after(250, lambda: self.focus())
 
         #canvas or smth idk

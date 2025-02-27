@@ -11,4 +11,4 @@ class Root(CTk.CTk):
         self.title("The Morser")
         self.geometry("1024x768")
         self.resizable(False, False)
-        self.iconbitmap(pref.relative_to_assets(pref.get_base_path(),"icon.ico"))
+        self.iconbitmap(pref.resource_path("data/assets/icon.ico"))

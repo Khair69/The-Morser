@@ -3,7 +3,7 @@ import customtkinter as CTk
 import models.pref as pref
 from PIL import Image
 
-ASSETS_PATH = pref.get_base_path()
+ASSETS_PATH = pref.resource_path("data/assets/")
 
 class TranslateView(Frame):
     def __init__(self, master):
@@ -24,17 +24,17 @@ class TranslateView(Frame):
         self.output_label.place(x=100.0, y=360.0)
 
         #home button
-        self.home_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"home_button.png")), size=(40,40))
+        self.home_button_image = CTk.CTkImage(Image.open(ASSETS_PATH+"home_button.png"), size=(40,40))
         self.button_home = CTk.CTkButton(self, image=self.home_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
         self.button_home.place(x=19.0, y=19.0)
 
         #playbutton
-        self.play_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"play_button.png")), size=(40,40))
+        self.play_button_image = CTk.CTkImage(Image.open(ASSETS_PATH+"play_button.png"), size=(40,40))
         self.button_play = CTk.CTkButton(self, image=self.play_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
         self.button_play.place(x=492.0, y=673.0)
 
         #stop button
-        self.stop_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"pause_button.png")), size=(40,40))
+        self.stop_button_image = CTk.CTkImage(Image.open(ASSETS_PATH+"pause_button.png"), size=(40,40))
         self.button_stop = CTk.CTkButton(self, image=self.stop_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
 
         #mode variable
@@ -46,7 +46,7 @@ class TranslateView(Frame):
         self.mode_sel.place(x=352, y=95)
 
         #settings button
-        self.settings_button_image = CTk.CTkImage(Image.open(pref.relative_to_assets(ASSETS_PATH,"settings_button.png")), size=(40,40))
+        self.settings_button_image = CTk.CTkImage(Image.open(ASSETS_PATH+"settings_button.png"), size=(40,40))
         self.button_settings = CTk.CTkButton(self, image=self.settings_button_image, width=40.0, height=40.0, bg_color="#1f1f1f", fg_color="#1f1f1f", hover_color="#1f1f1f", corner_radius=0, text="")
         self.button_settings.place(x=965.0, y=709.0)
         

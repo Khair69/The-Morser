@@ -4,7 +4,7 @@ import os
 
 class Custom:
     def __init__(self):
-        self.path = pref.get_base_path_json()
+        self.path = pref.resource_path("data/custom_sets")
 
     def save(self, words: list, file_name: str) -> None:
         with open(f"{self.path}/{file_name}.json", "w") as file:

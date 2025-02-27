@@ -42,3 +42,5 @@ models/temp_audio/*
 
 data/custom_sets/*
 !data/custom_sets/.gitkeep
+
+main.spec
